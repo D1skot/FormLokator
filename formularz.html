@@ -8,60 +8,110 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.9/jquery.inputmask.min.js"></script>
+    <style>
+    .form_container {
+        background-color: #faf2f2;
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 0px 0px 5px #c2c1c1;
+    }
+
+    #nextButton {
+        background-color: #000080;
+        padding: .5rem 1.5rem;
+        color: #fff;
+        text-decoration: none;
+        transition: .2s ease;
+        border-radius: 5px;
+        border: none;
+    }
+
+    #nextButton:hover {
+        opacity: .8;
+    }
+
+    textarea.error {
+        border-color: #dc3545;
+    }
+
+    input.error {
+        border-color: #dc3545;
+    }
+
+    input.error+label {
+        color: #dc3545;
+    }
+
+    textarea.valid {
+        border-color: #198754;
+    }
+
+    input.valid {
+        border-color: #198754;
+    }
+
+    input.valid+label {
+        color: #198754;
+    }
+    </style>
 </head>
 
 <body>
     <div class="container mt-5">
-        <h1 class="text-center mb-4">Formularz</h1>
-        <div id="form-container">
-            <!-- Etap pytań wypełniany dynamicznie -->
-        </div>
-        <div class="text-center mt-4">
-            <button id="next-button" class="btn btn-primary" disabled>Przejdź dalej</button>
+        <div class="form_container">
+            <h1 class="text-center mb-4">Formularz</h1>
+            <div id="formContainer">
+            </div>
+            <div id="errorsContainer">
+            </div>
+            <div class="text-center mt-4">
+                <button id="nextButton">Przejdź dalej</button>
+            </div>
         </div>
     </div>
     <script>
     const formSteps = [{
             question: "Przez kogo będzie używane mieszkanie, które zamierzasz wynająć przy pomocy tego certyfikatu?",
             options: ["Przeze mnie", "Przez kogoś innego"],
-            field: "pytanie_1",
+            field: "pytanie_0",
             nextStep: {
-                "Przeze mnie": 2,
-                "Przez kogoś innego": 1
+                "Przeze mnie": 40,
+                "Przez kogoś innego": 11
             }
         },
         {
             question: "Z kim będzie miszkać ta osoba dla której wynajmujesz to mieszkanie?",
             options: ["Samodzielnie", "Z partnerem/małżonkiem", "Ze znajomymi", "Z dziećmi", "Z partnerem i dziećmi"],
-            field: "pytanie_2",
+            field: "pytanie_1",
             nextStep: 4
         },
         {
             question: "Z kim planujesz zamieszkać w miejscu dla którego potrzebny ci certyfikat?",
             options: ["Samodzielnie", "Z partnerem/małżonkiem", "Ze znajomymi", "Z dziećmi", "Z partnerem i dziećmi"],
-            field: "pytanie_3",
+            field: "pytanie_2",
             nextStep: 3
         },
         {
             question: "Mieszkanie które planujesz wynająć będzie dla ciebie",
             options: ["głównym miejsciem zamieszkania", "dodatkowym miejsciem zamieszkania"],
-            field: "pytanie_4",
+            field: "pytanie_3",
             nextStep: 5
         },
         {
             question: "Czy osoba która będzie tam mieszkać zgodzi się wypełnić podobną ankiete jaką wypełniasz obecnie?",
             options: ["pewnie ak", "raczej nie"],
-            field: "pytanie_5",
+            field: "pytanie_4",
             nextStep: 5
         },
         {
             question: "Skąd czerpiesz obecnie środki na utrzymanie się? Wskaż jedno główne żródło. W kolejnych krokach będzie możliwość wskazania dodatkowego źródła dochodu",
             options: ["umowa o pracę", "umowa cywilnoprawna", "własna dzałalność", "oszczędności", "wsparcie rodziny", "świadczenia socjalne", "inne żródło"],
-            field: "pytanie_6",
+            field: "pytanie_5",
             nextStep: {
-                "umowa o pracę": 10,
-                "umowa cywilnoprawna": 10,
-                "własna dzałalność": 10,
+                "umowa o pracę": 8,
+                "umowa cywilnoprawna": 6,
+                "własna dzałalność": 14,
                 "oszczędności": 10,
                 "wsparcie rodziny": 10,
                 "świadczenia socjalne": 10,
@@ -71,281 +121,440 @@
         {
             question: "Czy to umowa regularna,czy zdarza się od czasu do czasu (np.kilka razy do roku)? ",
             options: ["okazjonalna", "regularna"],
-            field: "pytanie_7",
-            nextStep: 0
-        },  
+            field: "pytanie_6",
+            nextStep: {
+                "okazjonalna": 7,
+                "regularna": 8
+            }
+        },
         {
             question: "Opisz od czego zależy częstotliwość/powtarzalność tej umowy i jej ponowne zawarcie? ",
-           
-            field: "pytanie_8",
-            nextStep: 0
+            inputType: "text",
+            field: "pytanie_7",
+            nextStep: 9
         },
         {
             question: "Czy to umowa na czas określony? ",
-            options: ["nie-to umowa  na czas nieokreślony","tak"],
-            field: "pytanie_9",
-            nextStep: 0
+            options: ["nie-to umowa  na czas nieokreślony", "tak"],
+            field: "pytanie_8",
+            nextStep: {
+                "nie-to umowa  na czas nieokreślony": 9,
+                "tak": 11
+            }
         },
         {
             question: "Czy planujesz w ciągu najbliższych 12 miesięcy zmianę pracy? ",
             options: ["nie", "tak"],
-            field: "pytanie_10",
-            nextStep: 0
+            field: "pytanie_9",
+            nextStep: {
+                "nie": 14,
+                "tak": 12
+            }
         },
         {
             question: "Opowiedz nam więcej o tej cytuacji.Od kiedy korzystasz ze wsparcia rodziny lub świadczeń socjalnych?Skąd planujesz wziąć pieniądze na wynajem mieszkania? ",
-            
-            field: "pytanie_11",
-            nextStep: 0
+            inputType: "number",
+            field: "pytanie_10",
+            nextStep: 13
         },
         {
             question: "Do kiedy jest ważna i od czego zależy jej przedłużenie? ",
-            
-            field: "pytanie_12",
-            nextStep: 0
+            inputType: "text",
+            field: "pytanie_11",
+            nextStep: 9
         },
         {
             question: "Z jakiego powodu? ",
-           
-            field: "pytanie_13",
-            nextStep: 0
+            inputType: "text",
+            field: "pytanie_12",
+            nextStep: 14
         },
         {
             question: "Czy chcesz wskazać dodatkowe żródło dochodu? ",
             options: ["tak", "nie"],
-            field: "pytanie_14",
-            nextStep: 0
+            field: "pytanie_13",
+            nextStep: {
+                "nie": 15,
+                "tak": 5
+            }
         },
         {
-            question: "Podaj numer NIP,REGON lub KRS obecnego pracodawcy/właśnej działalności ",
-            
-            field: "pytanie_15",
-            nextStep: 0
+            question: "Podaj numer NIP, REGON lub KRS obecnego pracodawcy/właśnej działalności ",
+            inputType: "multi_text",
+            fields: [
+                { label: "NIP", name: "nip", type: "nip" },
+                { label: "REGON", name: "regon", type: "regon" },
+                { label: "KRS", name: "krs", type: "krs" }
+            ],
+            field: "pytanie_14",
+            nextStep: 13
         },
         {
             question: "Jaką kwotą dysponujesz śriednio co miesiąc ze wszystkich wymienionych żródeł(przed opłaceniem rachunków i innych zobowiązań)?Weż pod uwagę ostatnie 3 miesiące ",
-            
-            field: "pytanie_16",
-            nextStep: 0
+            inputType: "text",
+            field: "pytanie_15",
+            nextStep: 16
         },
         {
             question: "Czy obecnie wynajmujesz mieszkanie? ",
             options: ["tak", "nie"],
-            field: "pytanie_17",
-            nextStep: 0
+            field: "pytanie_16",
+            nextStep: {
+                "nie": 18,
+                "tak": 17
+            }
         },
         {
             question: "Od jak dawna i do kiedy? ",
-            
-            field: "pytanie_18",
-            nextStep: 0
+            inputType: "text",
+            field: "pytanie_17",
+            nextStep: 19
         },
         {
             question: "Dlaczego chcesz zacząć wynajmować mieszkanie?  ",
-            
-            field: "pytanie_19",
-            nextStep: 0
+            inputType: "text",
+            field: "pytanie_18",
+            nextStep: 24
         },
         {
             question: "Dlaczego  szukasz nowego wynajmu? ",
-            options: ["chcę się przeprowadzić", "potrzebuję wynająć kolejne mieszkanie","obecny właściciel poprosił o certyfikat"],
-            field: "pytanie_20",
-            nextStep: 0
+            options: ["chcę się przeprowadzić", "potrzebuję wynająć kolejne mieszkanie", "obecny właściciel poprosił o certyfikat"],
+            field: "pytanie_19",
+            nextStep: 20
         },
         {
-            question: "Ile kosztuje Cię wynajem tego mieszkania?(osobne pole na kwota dla właściciela i inne opłaty) ",
-            
-            field: "pytanie_21",
-            nextStep: 0
+            question: "Ile kosztuje Cię wynajem tego mieszkania? (osobne pola na kwotę dla właściciela i inne opłaty)",
+            inputType: "multi_text",
+            fields: [
+                { label: "Kwota dla właściciela", name: "kwota_wlasciciel" },
+                { label: "Inne opłaty", name: "inne_oplaty" }
+            ],
+            field: "pytanie_20",
+            nextStep: 21
         },
+
         {
             question: "Czy obecny właściciel może udzielić Ci referencji? ",
-            options: ["raczej nie", "raczej tak","nie chcę podejmować z nim tego tematu"],
-            field: "pytanie_22",
-            nextStep: 0
+            options: ["raczej nie", "raczej tak", "nie chcę podejmować z nim tego tematu"],
+            field: "pytanie_21",
+            nextStep: {
+                "raczej nie": 22,
+                "raczej tak": 23,
+                "nie chcę podejmować z nim tego tematu": 22
+            }
         },
         {
             question: "Jakie są tego powody? ",
-            
-            field: "pytanie_23",
-            nextStep: 0
+            inputType: "text",
+            field: "pytanie_22",
+            nextStep: 24
         },
         {
             question: "Poproś właściciela o sporządzenie krótkiej notatki w formie maila lub pliku PDF z referencjami- możesz załączyć go w kolejnym etapie ",
-            
-            field: "pytanie_24",
-            nextStep: 0
+            options: ["ok"],
+            field: "pytanie_23",
+            nextStep: 24
         },
         {
             question: "opisz w kilku zdaniach na co wydajesz miesięcznie najwięcej ",
-            
-            field: "pytanie_25",
-            nextStep: 0
+            inputType: "text",
+            field: "pytanie_24",
+            nextStep: 25
         },
         {
             question: "Czy w ciągu ostatnich 3 miesięcy udało Ci się na koniec miesięca zaoszczędzić jakąs kwotę? ",
-            options:["tak","nie"],
-            field: "pytanie_26",
-            nextStep: 0
+            options: ["tak", "nie"],
+            field: "pytanie_25",
+            nextStep: {
+                "nie": 27,
+                "tak": 26
+            }
         },
         {
-            question: "Czy to Twój sposób na regularne oszczędzanie? ",
-            
-            field: "pytanie_27",
-            nextStep: 0
+            question: "Czy to Twój sposób na regularne oszczędzanie?",
+            inputType: "text",
+            field: "pytanie_26",
+            nextStep: 27
         },
         {
             question: "Jakie oszczędności udało Ci się zgromadzić przez ostatnie 6 miesięcy?Podaj tylko kwotę odłożoną w ciągu ostatnich 6 miesięcy",
-           
-            field: "pytanie_28",
-            nextStep: 0
+            inputType: "text",
+            field: "pytanie_27",
+            nextStep: 28
         },
         {
             question: "Czy posziadasz jakieś zwierzęta domowe?",
-            options:["tak i będą ze mną mieszkać","tak,ale nie będą ze mną mieszkać","nie"],
-            field: "pytanie_29",
-            nextStep: 0
+            options: ["tak i będą ze mną mieszkać", "tak, ale nie będą ze mną mieszkać", "nie"],
+            field: "pytanie_28",
+            nextStep: {
+                "tak i będą ze mną mieszkać": 29,
+                "tak, ale nie będą ze mną mieszkać": 30,
+                "nie": 31
+            }
         },
         {
             question: "Opowiedz o nich- co to za zwierzęta,ile ich jest itp.",
-            ,
-            field: "pytanie_30",
-            nextStep: 0
+            inputType: "text",
+            field: "pytanie_29",
+            nextStep: 31
         },
         {
             question: "Dlaczego",
-            
-            field: "pytanie_31",
-            nextStep: 0
+            inputType: "text",
+            field: "pytanie_30",
+            nextStep: 31
         },
         {
             question: "Czy posziadasz dzieci w wieku poniżej 20 lat?",
-            options:["tak i będą ze mną mieszkać","tak,ale nie będą ze mną mieszkać","nie"],
-            field: "pytanie_32",
-            nextStep: 0
+            options: ["tak i będą ze mną mieszkać", "tak, ale nie będą ze mną mieszkać", "nie"],
+            field: "pytanie_31",
+            nextStep: {
+                "tak i będą ze mną mieszkać": 32,
+                "tak, ale nie będą ze mną mieszkać": 33,
+                "nie": 34
+            }
         },
         {
             question: "Opowiedz o nich-ile masz dzieci,w jakim są wieku?",
-            
-            field: "pytanie_33",
-            nextStep: 0
+            inputType: "text",
+            field: "pytanie_32",
+            nextStep: 34
         },
         {
             question: "Dlaczego?",
-            
-            field: "pytanie_34",
-            nextStep: 0
+            inputType: "text",
+            field: "pytanie_33",
+            nextStep: 34
         },
         {
             question: "Czy posziadasz szerokie grono znajomych z którymi spędzasz wolny czas? ",
-            options:["tak  wiele osób","tak ale to wąskie grono","spędzam czas głównie sam /z rodziną"],
-            field: "pytanie_35",
-            nextStep: 0
+            options: ["tak  wiele osób", "tak ale to wąskie grono", "spędzam czas głównie sam /z rodziną"],
+            field: "pytanie_34",
+            nextStep: 35
         },
         {
             question: "Czy posziadasz dzieci w wieku powyżej 20 lat?",
-            options:["tak","nie"]
-            field: "pytanie_36",
-            nextStep: 0
+            options: ["tak", "nie"],
+            field: "pytanie_35",
+            nextStep: 36
         },
         {
             question: "Czy palisz papierosy?",
-            options:["tak","tak ake glównie/tylko e-papierosy","nie"],
-            field: "pytanie_37",
-            nextStep: 0
+            options: ["tak", "tak ake glównie/tylko e-papierosy", "nie"],
+            field: "pytanie_36",
+            nextStep: 37
         },
         {
             question: "Czy wolisz spotykać się ze znajomymi w domu czy wyjść na miasto?",
-            options:["wolę domową atmosferę","wolę wyjść na  miasto","nie jestem  mocno aktywny towarzysko"],
-            field: "pytanie_38",
-            nextStep: 0
+            options: ["wolę domową atmosferę", "wolę wyjść na  miasto", "nie jestem  mocno aktywny towarzysko"],
+            field: "pytanie_37",
+            nextStep: 38
         },
         {
             question: "Jaki jest maksymalny koszt wynajmu (oplta dla właściciela + ewentualny czynsz spółdzielni bez mediów) jaki chcesz ponosić?  ",
-            
-            field: "pytanie_39",
-            nextStep: 0
+            inputType: "text",
+            field: "pytanie_38",
+            nextStep: 39
         },
         {
             question: "Jeśli wyliczymy, że Twoja zdolność czynszowa jest wyższa niż maksymalny koszt jaki określiłeś, to co mamy wskazać na Certyfikacie? ",
-            options:["maksymalną wyliczoną zdolność","kwotę określoną przeze mnie "],
-            field: "pytanie_40",
-            nextStep: 0
+            options: ["maksymalną wyliczoną zdolność", "kwotę określoną przeze mnie "],
+            field: "pytanie_39",
+            nextStep: 40
         },
         {
             question: "To ostatnie pytanie, Czy chcesz dodać jeszcze jakieś informacje,które pozwolą nam lepiej Cię ocenić? ",
-            
-            field: "pytanie_41",
-            nextStep: 0
+            inputType: "text",
+            field: "pytanie_40"
         }
     ];
-
-    function loadStep(stepIndex) {
-        const step = formSteps[stepIndex];
-        const container = $("#form-container");
-        container.empty();
-
-        const questionHtml = `<h4>${step.question}</h4>`;
-        container.append(questionHtml);
-
-        if (step.options) {
-            step.options.forEach(option => {
-                const optionHtml = `
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="${step.field}" value="${option}" id="${option}">
-                            <label class="form-check-label" for="${option}">
-                                ${option}
-                            </label>
-                        </div>`;
-                container.append(optionHtml);
-            });
-
-            $("input[name='" + step.field + "']").on("change", function() {
-                $("#next-button").prop("disabled", false);
-            });
-        } else if (step.inputType === "text") {
-            const inputHtml = `
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="${step.field}" placeholder="Wpisz tutaj...">
-                    </div>`;
-            container.append(inputHtml);
-
-
-            $("#" + step.field).on("input", function() {
-                const value = $(this).val();
-                $("#next-button").prop("disabled", value.trim() === "");
-            });
-        }
-    }
-
     $(document).ready(function() {
+
+        var errors = 1;
+        const errorsContainer = $("#errorsContainer");
+
+        function loadStep(stepIndex) {
+            const step = formSteps[stepIndex];
+            const container = $("#formContainer");
+            container.empty();
+            errors = 1;
+
+            const questionHtml = `<h5 class="my-2">${step.question}</h5>`;
+            container.append(questionHtml);
+
+            if (step.options) {
+                step.options.forEach((option, index) => {
+                    const uniqueId = `${step.field}_${index}`;
+                    const optionHtml = `
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="${step.field}" value="${option}" id="${uniqueId}">
+                    <label class="form-check-label" for="${uniqueId}">
+                        ${option}
+                    </label>
+                </div>`;
+                    container.append(optionHtml);
+                });
+
+
+                $("input[name='" + step.field + "']").on("change", function() {
+                    errors = 0;
+                    $('input').each(function() {
+                        $(this).removeClass('error');
+                    });
+                    errorsContainer.empty();
+                });
+            } else if (step.inputType === "text" || step.inputType === "number") {
+                let inputHtml = "";
+
+                if (step.inputType === "number") {
+                    inputHtml = `
+                        <div class="form-group">
+                            <input type="number" class="form-control" id="${step.field}" placeholder="Wpisz liczbę...">
+                        </div>`;
+                } else if (step.inputType === "text") {
+                    inputHtml = `
+                        <div class="form-group">
+                            <textarea class="form-control" style="min-height: 150px;" id="${step.field}" placeholder="Wpisz tekst..."></textarea>
+                        </div>`;
+                }
+                container.append(inputHtml);
+
+
+                $("#" + step.field).on("input", function() {
+                    const value = $(this).val().trim();
+                    if (value === "") {
+                        errors = 1;
+                    } else {
+                        $(this).removeClass('error');
+                        errorsContainer.empty();
+                        errors = 0;
+                    }
+                });
+            } else if (step.inputType === "multi_text") {
+                step.fields.forEach((field, index) => {
+                    const uniqueId = `${field.name}_${index}`;
+                    const fieldHtml = `
+                    <div class="form-group">
+                        <label for="${uniqueId}">${field.label}</label>
+                        <input type="text" class="form-control" id="${uniqueId}" placeholder="${field.label}">
+                    </div>`;
+                    container.append(fieldHtml);
+
+
+                    if (field.type === "nip") {
+                        Inputmask("999-999-99-99").mask(`#${uniqueId}`);
+                    } else if (field.type === "regon") {
+                        Inputmask("999999999").mask(`#${uniqueId}`);
+                    } else if (field.type === "krs") {
+                        Inputmask("9999999999").mask(`#${uniqueId}`);
+                    }
+                });
+
+
+                $("input").on("input", function() {
+                    const anyFilled = step.fields.some((field, index) => {
+                        const uniqueId = `${field.name}_${index}`;
+                        return $(`#${uniqueId}`).val().trim() !== "";
+                    });
+                    if (anyFilled) {
+                        errors = 0;
+                    } else {
+                        errors = 1;
+                    }
+                });
+
+                $("input").on("blur", function() {
+                    const id = $(this).attr("id");
+                    const value = $(this).val().trim();
+                    const cleanedValue = value.replace(/-/g, "");
+
+                    let errorMessage = "";
+                    let errorElement = $(`#${id}`).next(".error_message");
+
+
+                    if (errorElement.length) {
+                        errorElement.remove();
+                    }
+
+                    if (id.includes("nip") && !/^\d{10}$/.test(cleanedValue)) {
+                        errorMessage = "NIP jest niepoprawny";
+                    } else if (id.includes("regon") && !/^\d{9}$/.test(value)) {
+                        errorMessage = "REGON jest niepoprawny";
+                    } else if (id.includes("krs") && !/^\d{10}$/.test(value)) {
+                        errorMessage = "KRS jest niepoprawny";
+                    }
+
+
+                    if (errorMessage) {
+                        $(`#${id}`).removeClass('valid');
+                        $(`#${id}`).addClass('error');
+                        $(`#${id}`).after(`<div class="error_message" style="color: red; font-size: 12px;">${errorMessage}</div>`);
+                        errors = 1;
+                    } else {
+                        errorsContainer.empty();
+                        $('input').each(function() {
+                            $(this).removeClass('error');
+                        });
+                        $(`#${id}`).removeClass('error');
+                        $(`#${id}`).addClass('valid');
+                    }
+                });
+            }
+        }
+
         let currentStep = 0;
         const formData = [];
         loadStep(currentStep);
 
-        $("#next-button").on("click", function() {
-            const step = formSteps[currentStep];
-            if (step.options) {
-                const selectedValue = $(`input[name="${step.field}"]:checked`).val();
-                formData.push({ question: step.question, answer: selectedValue });
+        const errorMessage = `<h6 class="text-danger mt-2">Proszę dać odpowiedź</h6>`;
 
-                if (typeof step.nextStep === "object") {
-                    currentStep = step.nextStep[selectedValue];
-                } else {
+        $("#nextButton").on("click", function() {
+            console.log(errors)
+            if (errors > 0) {
+                errorsContainer.empty();
+                $('textarea').each(function() {
+                    $(this).addClass('error');
+                });
+                $('input').each(function() {
+                    $(this).addClass('error');
+                });
+                errorsContainer.append(errorMessage);
+            } else {
+                errorsContainer.empty();
+                const step = formSteps[currentStep];
+                if (step.options) {
+                    const selectedValue = $(`input[name="${step.field}"]:checked`).val();
+                    formData.push({ nr_question: step.field, question: step.question, answer: selectedValue });
+
+                    if (typeof step.nextStep === "object") {
+                        currentStep = step.nextStep[selectedValue];
+                    } else if (step.nextStep !== undefined) {
+                        currentStep = step.nextStep;
+                    } else {
+                        currentStep = undefined;
+                    }
+
+                } else if (step.inputType === "text" || step.inputType === "number") {
+                    const inputValue = $(`#${step.field}`).val();
+                    formData.push({ nr_question: step.field, question: step.question, answer: inputValue });
+                    currentStep = step.nextStep;
+                } else if (step.inputType === "multi_text") {
+                    const answers = [];
+                    step.fields.forEach(field => {
+                        answers[field.label] = $(`#${field.name}`).val();
+                    });
+                    formData.push({ question: step.question, answer: answers });
                     currentStep = step.nextStep;
                 }
-            } else if (step.inputType === "text") {
-                const inputValue = $(`#${step.field}`).val();
-                formData.push({ question: step.question, answer: inputValue });
-                currentStep = step.nextStep;
-            }
 
-            if (currentStep !== undefined && currentStep < formSteps.length) {
-                loadStep(currentStep);
-                $("#next-button").prop("disabled", true);
-            } else {
-                $("#form-container").html("<h4>Dziękujemy za wypełnienie formularza!</h4>");
                 console.log("Zebrane dane:", formData);
+
+                if (currentStep !== undefined && currentStep < formSteps.length) {
+                    loadStep(currentStep);
+                } else {
+                    $("#formContainer").html('<h4 class="text-center">Dziękujemy za wypełnienie formularza!</h4>');
+                    $("#nextButton").hide();
+                }
             }
         });
     });
