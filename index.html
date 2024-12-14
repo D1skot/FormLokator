@@ -543,7 +543,7 @@
                     step.fields.forEach(field => {
                         answers[field.label] = $(`#${field.name}`).val();
                     });
-                    formData.push({ question: step.question, answer: answers });
+                    formData.push({ nr_question: step.field, question: step.question, answer: answers });
                     currentStep = step.nextStep;
                 }
 
