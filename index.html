@@ -72,7 +72,7 @@
     </div>
     <script>
     const formSteps = [{
-            question: "Przez kogo będzie używane mieszkanie, które zamierzasz wynająć przy pomocy tego certyfikatu?",
+            question: "Kto będzie korzystał z mieszkania, które zamierzasz wynająć przy pomocy tego certyfikatu?",
             options: ["Przeze mnie", "Przez kogoś innego"],
             field: "pytanie_0",
             nextStep: {
@@ -81,105 +81,105 @@
             }
         },
         {
-            question: "Z kim będzie miszkać ta osoba dla której wynajmujesz to mieszkanie?",
+            question: "Z kim będzie mieszkać osoba, dla której wynajmujesz to mieszkanie?",
             options: ["Samodzielnie", "Z partnerem/małżonkiem", "Ze znajomymi", "Z dziećmi", "Z partnerem i dziećmi"],
             field: "pytanie_1",
             nextStep: 4
         },
         {
-            question: "Z kim planujesz zamieszkać w miejscu dla którego potrzebny ci certyfikat?",
+            question: "Z kim planujesz zamieszkać w miejscu, dla którego potrzebujesz certyfikatu?",
             options: ["Samodzielnie", "Z partnerem/małżonkiem", "Ze znajomymi", "Z dziećmi", "Z partnerem i dziećmi"],
             field: "pytanie_2",
             nextStep: 3
         },
         {
-            question: "Mieszkanie które planujesz wynająć będzie dla ciebie",
-            options: ["głównym miejsciem zamieszkania", "dodatkowym miejsciem zamieszkania"],
+            question: "Mieszkanie, które planujesz wynająć, będzie dla Ciebie:",
+            options: ["głównym miejscem zamieszkania", "dodatkowym miejscem zamieszkania"],
             field: "pytanie_3",
             nextStep: 5
         },
         {
-            question: "Czy osoba która będzie tam mieszkać zgodzi się wypełnić podobną ankiete jaką wypełniasz obecnie?",
-            options: ["pewnie ak", "raczej nie"],
+            question: "Czy osoba, która będzie tam mieszkać, zgodzi się wypełnić podobną ankietę jaką wypełniasz obecnie?",
+            options: ["Pewnie tak", "Raczej nie"],
             field: "pytanie_4",
             nextStep: 5
         },
         {
-            question: "Skąd czerpiesz obecnie środki na utrzymanie się? Wskaż jedno główne żródło. W kolejnych krokach będzie możliwość wskazania dodatkowego źródła dochodu",
-            options: ["umowa o pracę", "umowa cywilnoprawna", "własna dzałalność", "oszczędności", "wsparcie rodziny", "świadczenia socjalne", "inne żródło"],
+            question: "Skąd czerpiesz obecnie środki na utrzymanie? Wskaż jedno główne źródło. W kolejnych krokach będzie możliwość wskazania dodatkowego źródła dochodu.",
+            options: ["Umowa o pracę", "Umowa cywilnoprawna", "Własna działalność", "Oszczędności", "Wsparcie rodziny", "Świadczenia socjalne", "Inne źródło"],
             field: "pytanie_5",
             nextStep: {
-                "umowa o pracę": 8,
-                "umowa cywilnoprawna": 6,
-                "własna dzałalność": 14,
-                "oszczędności": 10,
-                "wsparcie rodziny": 10,
-                "świadczenia socjalne": 10,
-                "inne żródło": 10
+                "Umowa o pracę": 8,
+                "Umowa cywilnoprawna": 6,
+                "Własna działalność": 14,
+                "Oszczędności": 10,
+                "Wsparcie rodziny": 10,
+                "Świadczenia socjalne": 10,
+                "Inne źródło": 10
             }
         },
         {
-            question: "Czy to umowa regularna,czy zdarza się od czasu do czasu (np.kilka razy do roku)? ",
-            options: ["okazjonalna", "regularna"],
+            question: "Czy to umowa regularna, czy zdarza się od czasu do czasu (np. kilka razy do roku)?",
+            options: ["Okazjonalna", "Regularna"],
             field: "pytanie_6",
             nextStep: {
-                "okazjonalna": 7,
-                "regularna": 8
+                "Okazjonalna": 7,
+                "Regularna": 8
             }
         },
         {
-            question: "Opisz od czego zależy częstotliwość/powtarzalność tej umowy i jej ponowne zawarcie? ",
+            question: "Opisz, od czego zależy częstotliwość/powtarzalność tej umowy i jej ponowne zawarcie.",
             inputType: "text",
             field: "pytanie_7",
             nextStep: 9
         },
         {
-            question: "Czy to umowa na czas określony? ",
-            options: ["nie-to umowa  na czas nieokreślony", "tak"],
+            question: "Czy to umowa na czas określony?",
+            options: ["Nie, to umowa na czas nieokreślony", "Tak"],
             field: "pytanie_8",
             nextStep: {
-                "nie-to umowa  na czas nieokreślony": 9,
-                "tak": 11
+                "Nie, to umowa na czas nieokreślony": 9,
+                "Tak": 11
             }
         },
         {
-            question: "Czy planujesz w ciągu najbliższych 12 miesięcy zmianę pracy? ",
-            options: ["nie", "tak"],
+            question: "Czy planujesz w ciągu najbliższych 12 miesięcy zmianę pracy?",
+            options: ["Nie", "Tak"],
             field: "pytanie_9",
             nextStep: {
-                "nie": 14,
-                "tak": 12
+                "Nie": 14,
+                "Tak": 12
             }
         },
         {
-            question: "Opowiedz nam więcej o tej cytuacji.Od kiedy korzystasz ze wsparcia rodziny lub świadczeń socjalnych?Skąd planujesz wziąć pieniądze na wynajem mieszkania? ",
-            inputType: "number",
+            question: "Opowiedz nam więcej o tej sytuacji. Od kiedy korzystasz ze wsparcia rodziny lub świadczeń socjalnych? Skąd planujesz wziąć pieniądze na wynajem mieszkania?",
+            inputType: "text",
             field: "pytanie_10",
             nextStep: 13
         },
         {
-            question: "Do kiedy jest ważna i od czego zależy jej przedłużenie? ",
+            question: "Do kiedy jest ważna i od czego zależy jej przedłużenie?",
             inputType: "text",
             field: "pytanie_11",
             nextStep: 9
         },
         {
-            question: "Z jakiego powodu? ",
+            question: "Z jakiego powodu?",
             inputType: "text",
             field: "pytanie_12",
             nextStep: 14
         },
         {
-            question: "Czy chcesz wskazać dodatkowe żródło dochodu? ",
-            options: ["tak", "nie"],
+            question: "Czy chcesz wskazać dodatkowe źródło dochodu?",
+            options: ["Tak", "Nie"],
             field: "pytanie_13",
             nextStep: {
-                "nie": 15,
-                "tak": 5
+                "Nie": 15,
+                "Tak": 5
             }
         },
         {
-            question: "Podaj numer NIP, REGON lub KRS obecnego pracodawcy/właśnej działalności ",
+            question: "Podaj numer NIP, REGON lub KRS obecnego pracodawcy/własnej działalności:",
             inputType: "multi_text",
             fields: [
                 { label: "NIP", name: "nip", type: "nip" },
@@ -190,84 +190,83 @@
             nextStep: 13
         },
         {
-            question: "Jaką kwotą dysponujesz śriednio co miesiąc ze wszystkich wymienionych żródeł(przed opłaceniem rachunków i innych zobowiązań)?Weż pod uwagę ostatnie 3 miesiące ",
-            inputType: "text",
+            question: "Jaką kwotą dysponujesz średnio co miesiąc ze wszystkich wymienionych źródeł (przed opłaceniem rachunków i innych zobowiązań)? Weź pod uwagę ostatnie 3 miesiące.",
+            inputType: "number",
             field: "pytanie_15",
             nextStep: 16
         },
         {
-            question: "Czy obecnie wynajmujesz mieszkanie? ",
-            options: ["tak", "nie"],
+            question: "Czy obecnie wynajmujesz mieszkanie?",
+            options: ["Tak", "Nie"],
             field: "pytanie_16",
             nextStep: {
-                "nie": 18,
-                "tak": 17
+                "Nie": 18,
+                "Tak": 17
             }
         },
         {
-            question: "Od jak dawna i do kiedy? ",
+            question: "Od jak dawna wynajmujesz mieszkanie i do kiedy planujesz wynajem?",
             inputType: "text",
             field: "pytanie_17",
             nextStep: 19
         },
         {
-            question: "Dlaczego chcesz zacząć wynajmować mieszkanie?  ",
+            question: "Dlaczego chcesz zacząć wynajmować mieszkanie?",
             inputType: "text",
             field: "pytanie_18",
             nextStep: 24
         },
         {
-            question: "Dlaczego  szukasz nowego wynajmu? ",
-            options: ["chcę się przeprowadzić", "potrzebuję wynająć kolejne mieszkanie", "obecny właściciel poprosił o certyfikat"],
+            question: "Dlaczego szukasz nowego mieszkania do wynajęcia?",
+            options: ["Chcę się przeprowadzić", "Potrzebuję wynająć kolejne mieszkanie", "Obecny właściciel poprosił o certyfikat"],
             field: "pytanie_19",
             nextStep: 20
         },
         {
-            question: "Ile kosztuje Cię wynajem tego mieszkania? (osobne pola na kwotę dla właściciela i inne opłaty)",
+            question: "Ile kosztuje Cię wynajem obecnego mieszkania? (podaj kwotę dla właściciela i inne opłaty)",
             inputType: "multi_text",
             fields: [
-                { label: "Kwota dla właściciela", name: "kwota_wlasciciel" },
-                { label: "Inne opłaty", name: "inne_oplaty" }
+                { label: "Kwota dla właściciela", name: "kwota_wlasciciel", type: "number" },
+                { label: "Inne opłaty", name: "inne_oplaty", type: "number" }
             ],
             field: "pytanie_20",
             nextStep: 21
         },
-
         {
-            question: "Czy obecny właściciel może udzielić Ci referencji? ",
-            options: ["raczej nie", "raczej tak", "nie chcę podejmować z nim tego tematu"],
+            question: "Czy obecny właściciel może udzielić Ci referencji?",
+            options: ["Raczej nie", "Raczej tak", "Nie chcę podejmować tego tematu"],
             field: "pytanie_21",
             nextStep: {
-                "raczej nie": 22,
-                "raczej tak": 23,
-                "nie chcę podejmować z nim tego tematu": 22
+                "Raczej nie": 22,
+                "Raczej tak": 23,
+                "Nie chcę podejmować tego tematu": 22
             }
         },
         {
-            question: "Jakie są tego powody? ",
+            question: "Jakie są powody, dla których właściciel nie może udzielić referencji?",
             inputType: "text",
             field: "pytanie_22",
             nextStep: 24
         },
         {
-            question: "Poproś właściciela o sporządzenie krótkiej notatki w formie maila lub pliku PDF z referencjami- możesz załączyć go w kolejnym etapie ",
-            options: ["ok"],
+            question: "Poproś właściciela o przygotowanie krótkiej notatki w formie maila lub pliku PDF z referencjami. Możesz załączyć ją w kolejnym etapie.",
+            options: ["Ok"],
             field: "pytanie_23",
             nextStep: 24
         },
         {
-            question: "opisz w kilku zdaniach na co wydajesz miesięcznie najwięcej ",
+            question: "Opisz, na co wydajesz miesięcznie najwięcej pieniędzy.",
             inputType: "text",
             field: "pytanie_24",
             nextStep: 25
         },
         {
-            question: "Czy w ciągu ostatnich 3 miesięcy udało Ci się na koniec miesięca zaoszczędzić jakąs kwotę? ",
-            options: ["tak", "nie"],
+            question: "Czy w ciągu ostatnich 3 miesięcy udało Ci się oszczędzić jakąś kwotę na koniec miesiąca?",
+            options: ["Tak", "Nie"],
             field: "pytanie_25",
             nextStep: {
-                "nie": 27,
-                "tak": 26
+                "Nie": 27,
+                "Tak": 26
             }
         },
         {
@@ -277,96 +276,97 @@
             nextStep: 27
         },
         {
-            question: "Jakie oszczędności udało Ci się zgromadzić przez ostatnie 6 miesięcy?Podaj tylko kwotę odłożoną w ciągu ostatnich 6 miesięcy",
-            inputType: "text",
+            question: "Jaką kwotę udało Ci się zgromadzić przez ostatnie 6 miesięcy? Podaj tylko odłożoną sumę.",
+            inputType: "number",
             field: "pytanie_27",
             nextStep: 28
         },
         {
-            question: "Czy posziadasz jakieś zwierzęta domowe?",
-            options: ["tak i będą ze mną mieszkać", "tak, ale nie będą ze mną mieszkać", "nie"],
+            question: "Czy posiadasz jakieś zwierzęta domowe?",
+            options: ["Tak, i będą ze mną mieszkać", "Tak, ale nie będą ze mną mieszkać", "Nie"],
             field: "pytanie_28",
             nextStep: {
-                "tak i będą ze mną mieszkać": 29,
-                "tak, ale nie będą ze mną mieszkać": 30,
-                "nie": 31
+                "Tak, i będą ze mną mieszkać": 29,
+                "Tak, ale nie będą ze mną mieszkać": 30,
+                "Nie": 31
             }
         },
         {
-            question: "Opowiedz o nich- co to za zwierzęta,ile ich jest itp.",
+            question: "Opisz swoje zwierzęta: co to za zwierzęta, ile ich jest itp.",
             inputType: "text",
             field: "pytanie_29",
             nextStep: 31
         },
         {
-            question: "Dlaczego",
+            question: "Dlaczego Twoje zwierzęta nie będą mieszkać z Tobą?",
             inputType: "text",
             field: "pytanie_30",
             nextStep: 31
         },
         {
-            question: "Czy posziadasz dzieci w wieku poniżej 20 lat?",
-            options: ["tak i będą ze mną mieszkać", "tak, ale nie będą ze mną mieszkać", "nie"],
+            question: "Czy posiadasz dzieci w wieku poniżej 20 lat?",
+            options: ["Tak, i będą ze mną mieszkać", "Tak, ale nie będą ze mną mieszkać", "Nie"],
             field: "pytanie_31",
             nextStep: {
-                "tak i będą ze mną mieszkać": 32,
-                "tak, ale nie będą ze mną mieszkać": 33,
-                "nie": 34
+                "Tak, i będą ze mną mieszkać": 32,
+                "Tak, ale nie będą ze mną mieszkać": 33,
+                "Nie": 34
             }
         },
         {
-            question: "Opowiedz o nich-ile masz dzieci,w jakim są wieku?",
+            question: "Opisz swoje dzieci: ile ich masz i w jakim są wieku?",
             inputType: "text",
             field: "pytanie_32",
             nextStep: 34
         },
         {
-            question: "Dlaczego?",
+            question: "Dlaczego Twoje dzieci nie będą mieszkać z Tobą?",
             inputType: "text",
             field: "pytanie_33",
             nextStep: 34
         },
         {
-            question: "Czy posziadasz szerokie grono znajomych z którymi spędzasz wolny czas? ",
-            options: ["tak  wiele osób", "tak ale to wąskie grono", "spędzam czas głównie sam /z rodziną"],
+            question: "Czy posiadasz szerokie grono znajomych, z którymi spędzasz wolny czas?",
+            options: ["Tak, wiele osób", "Tak, ale to wąskie grono", "Spędzam czas głównie sam/z rodziną"],
             field: "pytanie_34",
             nextStep: 35
         },
         {
-            question: "Czy posziadasz dzieci w wieku powyżej 20 lat?",
-            options: ["tak", "nie"],
+            question: "Czy posiadasz dzieci w wieku powyżej 20 lat?",
+            options: ["Tak", "Nie"],
             field: "pytanie_35",
             nextStep: 36
         },
         {
             question: "Czy palisz papierosy?",
-            options: ["tak", "tak ake glównie/tylko e-papierosy", "nie"],
+            options: ["Tak", "Tak, ale głównie/tylko e-papierosy", "Nie"],
             field: "pytanie_36",
             nextStep: 37
         },
         {
-            question: "Czy wolisz spotykać się ze znajomymi w domu czy wyjść na miasto?",
-            options: ["wolę domową atmosferę", "wolę wyjść na  miasto", "nie jestem  mocno aktywny towarzysko"],
+            question: "Czy wolisz spotykać się ze znajomymi w domu, czy wyjść na miasto?",
+            options: ["Wolę domową atmosferę", "Wolę wyjść na miasto", "Nie jestem mocno aktywny towarzysko"],
             field: "pytanie_37",
             nextStep: 38
         },
         {
-            question: "Jaki jest maksymalny koszt wynajmu (oplta dla właściciela + ewentualny czynsz spółdzielni bez mediów) jaki chcesz ponosić?  ",
-            inputType: "text",
+            question: "Jaki jest maksymalny koszt wynajmu (opłata dla właściciela + ewentualny czynsz spółdzielni bez mediów), jaki chcesz ponosić?",
+            inputType: "number",
             field: "pytanie_38",
             nextStep: 39
         },
         {
-            question: "Jeśli wyliczymy, że Twoja zdolność czynszowa jest wyższa niż maksymalny koszt jaki określiłeś, to co mamy wskazać na Certyfikacie? ",
-            options: ["maksymalną wyliczoną zdolność", "kwotę określoną przeze mnie "],
+            question: "Jeśli wyliczymy, że Twoja zdolność czynszowa jest wyższa niż maksymalny koszt, jaki określiłeś, to co mamy wskazać na Certyfikacie?",
+            options: ["Maksymalną wyliczoną zdolność", "Kwotę określoną przeze mnie"],
             field: "pytanie_39",
             nextStep: 40
         },
         {
-            question: "To ostatnie pytanie, Czy chcesz dodać jeszcze jakieś informacje,które pozwolą nam lepiej Cię ocenić? ",
+            question: "To ostatnie pytanie. Czy chcesz dodać jeszcze jakieś informacje, które pozwolą nam lepiej Cię ocenić?",
             inputType: "text",
             field: "pytanie_40"
         }
+
     ];
     $(document).ready(function() {
 
@@ -433,10 +433,16 @@
             } else if (step.inputType === "multi_text") {
                 step.fields.forEach((field, index) => {
                     const uniqueId = `${field.name}_${index}`;
+
+                    var typeInput = 'text';
+                    if (field.type === "number") {
+                        typeInput = 'number';
+                    }
+
                     const fieldHtml = `
                     <div class="form-group">
                         <label for="${uniqueId}">${field.label}</label>
-                        <input type="text" class="form-control" id="${uniqueId}" placeholder="${field.label}">
+                        <input type="${typeInput}" class="form-control" id="${uniqueId}" placeholder="${field.label}">
                     </div>`;
                     container.append(fieldHtml);
 
@@ -539,14 +545,14 @@
                     formData.push({ nr_question: step.field, question: step.question, answer: inputValue });
                     currentStep = step.nextStep;
                 } else if (step.inputType === "multi_text") {
-                    const answers = [];
-                    step.fields.forEach(field => {
-                        answers[field.label] = $(`#${field.name}`).val();
+                    const answers = {};
+                    step.fields.forEach((field, index) => {
+                        const uniqueId = `${field.name}_${index}`;
+                        answers[field.label] = $(`#${uniqueId}`).val();
                     });
                     formData.push({ nr_question: step.field, question: step.question, answer: answers });
                     currentStep = step.nextStep;
                 }
-
                 console.log("Zebrane dane:", formData);
 
                 if (currentStep !== undefined && currentStep < formSteps.length) {
